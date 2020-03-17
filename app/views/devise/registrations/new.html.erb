@@ -13,23 +13,24 @@
     <%= f.text_field :role %>
   </div>
 
-    <div class="field">
-    <label>Select your groups</label>
+<div class="field">
     <br/>
   
+        <div class="form-group options">
+            <label class="control-label col-md-4" for="optiontext">Select your groups</label>
+              <div class="col-md-6">
+          <% @groups.each do |group| %>
+                <tr>
+                  <td><%= group.name %></td>
+                  <td><%= check_box("group", group.id,:required => true) %></td>
+                  <br>
+                </tr>
+              <% end %>
+            </div>
+        </div>
 
- <% @groups.each do |group| %>
-      <tr>
-        <td><%= group.name %></td>
-        <td><%= check_box("group", group.id) %></td>
-        <br>
-      </tr>
-    <% end %>
-  </div>
-  
-  <%# ------- -------- %>
+</div>
 
-  <%# ------- -------- %>
 
   <div class="field">
     <%= f.label :password %>
