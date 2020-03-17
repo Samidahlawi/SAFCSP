@@ -13,8 +13,23 @@
     <%= f.text_field :role %>
   </div>
 
-<%# <%= f.collection_select :provider_id, Provider.order(:name),:id,:name, include_blank: true %> 
+    <div class="field">
+    <label>Select your groups</label>
+    <br/>
+  
 
+ <% @groups.each do |group| %>
+      <tr>
+        <td><%= group.name %></td>
+        <td><%= check_box("group", group.id) %></td>
+        <br>
+      </tr>
+    <% end %>
+  </div>
+  
+  <%# ------- -------- %>
+
+  <%# ------- -------- %>
 
   <div class="field">
     <%= f.label :password %>
