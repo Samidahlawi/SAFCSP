@@ -1,6 +1,19 @@
 <h1>Editing Report</h1>
 
-<%= render 'form', report: @report %>
+<%# render 'form', report: @report %>
+<%= form_with(model: @report, url: group_report_path, method: "PATCH") do |form| %>
 
-<%= link_to 'Show', @report %> |
-<%= link_to 'Back', reports_path %>
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Update" %>
+  </div>
+
+
+<% end %>
+
+<%# link_to 'Show', @report %> |
+<%# link_to 'Back', reports_path %>

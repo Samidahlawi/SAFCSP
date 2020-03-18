@@ -1,13 +1,13 @@
 class ReportsController < ApplicationController
   before_action :set_report, only: [:show, :edit, :update]
 
-  # GET /reports
+  # GET /groups/group_id/reports
   # GET /reports.json
   def index
     @reports = Report.all
   end
 
-  # GET /reports/1
+  # GET /groups/group_id/reports/1
   # GET /reports/1.json
   def show
     report_id = params[:id]
@@ -23,6 +23,7 @@ class ReportsController < ApplicationController
 
   # GET /groups/group_id/reports/1/edit
   def edit
+    @report = Report.find(params[:id])
   end
 
   # POST /reports
@@ -39,19 +40,20 @@ class ReportsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /reports/1
+  # PATCH/PUT /groups/group_id/reports/1
   # PATCH/PUT /reports/1.json
   def update
+    @report.group_id = params[:group_id]
     respond_to do |format|
       if @report.update(report_params)
-        format.html { redirect_to @report, notice: 'Report was successfully updated.' }
+        format.html { redirect_to group_path(@report.group_id), notice: 'Report was successfully updated.' }
       else
         format.html { render :edit }
       end
     end
   end
 
-  # DELETE /reports/1
+  # DELETE /groups/group_id/reports/1
   # DELETE /reports/1.json
   def destroy
     group_id = params[:group_id]
