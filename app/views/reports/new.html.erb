@@ -7,6 +7,14 @@
     <%= form.text_field :name %>
   </div>
 
+  <div class="field">
+      <b>Tag</b><br />
+
+      <% @tags.each do |tag|%>
+      <%= form.radio_button :tag, tag.name %> <%=tag.name%> <br />
+      <% end%>
+
+</div>
   <div class="actions">
     <%= form.submit "Create" %>
   </div>

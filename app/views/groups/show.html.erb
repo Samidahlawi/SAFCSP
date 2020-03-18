@@ -1,4 +1,4 @@
-<h1>Groups#show</h1>
+<h1>All Reports</h1>
 <br>
 <%= link_to 'Back', groups_path %>
 <br>
@@ -6,12 +6,12 @@
 
 <hr>
 <%= link_to 'Create New Report' , new_group_report_path(@group.id) %>
-
+<hr>
 <table>
   <thead>
     <tr>
       <th>Name</th>
-      <th colspan="3"></th>
+      <th>Tag</th>
     </tr>
   </thead>
 
@@ -19,6 +19,7 @@
     <% @reports.each do |report| %>
       <tr>
         <td><%= report.name %></td>
+        <td><%= report.tag.name %></td>
         <td><%= link_to 'Show', group_report_path(@group.id,report.id) %></td>
         <td><%= link_to 'Edit', edit_group_report_path(@group.id,report.id) %></td>
         <td><%= link_to 'Destroy', group_report_path(@group.id,report.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>

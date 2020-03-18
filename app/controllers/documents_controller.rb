@@ -7,57 +7,67 @@ class DocumentsController < ApplicationController
     @documents = Document.all
   end
 
-  # GET /documents/1
+  # GET /groups/group_id/reports/report_id/documents/1
   # GET /documents/1.json
   def show
+    @document = Document.find(params[:id])
+    @group_id = params[:group_id]
+    @report_id = params[:report_id]
   end
 
-  # GET /documents/new
+  # GET /groups/group_id/reports/report_id/documents/new
   def new
     @document = Document.new
+    @group_id = params[:group_id]
+    @report_id = params[:report_id]
   end
 
-  # GET /documents/1/edit
+  # GET /groups/group_id/reports/report_id/documents/:id/edit
   def edit
+    @document = Document.find(params[:id])
+    @group_id = params[:group_id]
+    @report_id = params[:report_id]
   end
 
-  # POST /documents
+  # POST /groups/group_id/reports/report_id/documents
   # POST /documents.json
   def create
+    report_id = params[:report_id]
+    group_id = params[:group_id]
     @document = Document.new(document_params)
+    @document.report_id = report_id 
 
     respond_to do |format|
       if @document.save
-        format.html { redirect_to @document, notice: 'Document was successfully created.' }
-        format.json { render :show, status: :created, location: @document }
+        format.html { redirect_to group_report_path(group_id,report_id) , notice: 'Document was successfully created.' }
       else
         format.html { render :new }
-        format.json { render json: @document.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # PATCH/PUT /documents/1
+  # PATCH/PUT /groups/group_id/report/report_id/documents/:id
   # PATCH/PUT /documents/1.json
   def update
+    group_id = params[:group_id]
+    report_id= params[:report_id]
     respond_to do |format|
       if @document.update(document_params)
-        format.html { redirect_to @document, notice: 'Document was successfully updated.' }
-        format.json { render :show, status: :ok, location: @document }
+        format.html { redirect_to group_report_path(group_id,report_id), notice: 'Document was successfully updated.' }
       else
         format.html { render :edit }
-        format.json { render json: @document.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # DELETE /documents/1
+  # DELETE /groups/group_id/reports/report_id/documents/1
   # DELETE /documents/1.json
   def destroy
+    group_id = params[:group_id]
+    report_id = params[:report_id]
     @document.destroy
     respond_to do |format|
-      format.html { redirect_to documents_url, notice: 'Document was successfully destroyed.' }
-      format.json { head :no_content }
+      format.html { redirect_to group_report_path(group_id,report_id), notice: 'Document was successfully destroyed.' }
     end
   end
 

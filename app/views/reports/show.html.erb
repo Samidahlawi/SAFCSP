@@ -1,9 +1,32 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @report.name %>
-</p>
-
-<%= link_to 'Edit', edit_group_report_path(@group_id,@report.id) %> |
+<h1>All Documents</h1>
+<br>
 <%= link_to 'Back', group_path(@group_id) %>
+<br>
+<h3>Name: <strong> <%= @report.name %></strong> </h3>
+<h3>Tag: <strong>  <%= @report.tag.name %></strong> </h3>
+<br>
+
+<hr>
+<%= link_to 'Create New Document' , new_group_report_document_path(@group_id,@report.id) %>
+<hr>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Content</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @documents.each do |document| %>
+      <tr>
+        <td><%= document.title %></td>
+        <td><%= document.content %></td>
+        <td><%= link_to 'Show', group_report_document_path(@group_id,@report.id,document.id) %></td>
+        <td><%= link_to 'Edit', edit_group_report_document_path(@group_id,@report.id,document.id) %></td>
+        <td><%= link_to 'Destroy', group_report_document_path(@group_id,@report.id,document.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

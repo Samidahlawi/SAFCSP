@@ -10,5 +10,5 @@
   <%= @document.content %>
 </p>
 
-<%= link_to 'Edit', edit_document_path(@document) %> |
-<%= link_to 'Back', documents_path %>
+<%= link_to 'Edit', edit_group_report_document_path(@group_id,@report_id,@document.id) %> |
+<%= link_to 'Back', group_report_path(@group_id,@report_id) %>

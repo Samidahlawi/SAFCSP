@@ -2,10 +2,12 @@ Rails.application.routes.draw do
   
 
   
-  resources :documents
+  
   
   resources :groups do
-    resources :reports
+    resources :reports do 
+      resources :documents
+    end
   end
 
   # devise_for :users

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_17_235403) do
+ActiveRecord::Schema.define(version: 2020_03_18_215616) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,8 @@ ActiveRecord::Schema.define(version: 2020_03_17_235403) do
     t.text "content"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "report_id", null: false
+    t.index ["report_id"], name: "index_documents_on_report_id"
   end
 
   create_table "groups", force: :cascade do |t|
@@ -38,7 +40,15 @@ ActiveRecord::Schema.define(version: 2020_03_17_235403) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "group_id", null: false
+    t.bigint "tag_id", null: false
     t.index ["group_id"], name: "index_reports_on_group_id"
+    t.index ["tag_id"], name: "index_reports_on_tag_id"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -54,5 +64,7 @@ ActiveRecord::Schema.define(version: 2020_03_17_235403) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "documents", "reports"
   add_foreign_key "reports", "groups"
+  add_foreign_key "reports", "tags"
 end

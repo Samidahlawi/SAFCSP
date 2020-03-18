@@ -13,24 +13,31 @@ class ReportsController < ApplicationController
     report_id = params[:id]
     @report = Report.find(report_id)
     @group_id = params[:group_id]
+    @documents = Document.where(report_id:report_id)
   end
 
   # GET /groups/:group_id/reports/new
   def new
+
     @report = Report.new
+    @tags = Tag.all
     
   end
 
   # GET /groups/group_id/reports/1/edit
   def edit
     @report = Report.find(params[:id])
+    @tags = Tag.all
   end
 
   # POST /reports
   # POST /reports.json
   def create
+    tag_name = params[:report][:tag]
+    tag = Tag.find_by(name:tag_name)
     @report = Report.new(report_params)
     @report.group_id = params[:group_id]
+    @report.tag_id = tag.id
     respond_to do |format|
       if @report.save
         format.html { redirect_to group_path(@report.group_id), notice: 'Report was successfully created.' }
@@ -43,6 +50,9 @@ class ReportsController < ApplicationController
   # PATCH/PUT /groups/group_id/reports/1
   # PATCH/PUT /reports/1.json
   def update
+    tag_name = params[:report][:tag]
+    tag = Tag.find_by(name:tag_name)
+    @report.tag_id = tag.id
     @report.group_id = params[:group_id]
     respond_to do |format|
       if @report.update(report_params)
