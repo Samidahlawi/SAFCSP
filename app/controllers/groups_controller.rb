@@ -8,6 +8,7 @@ class GroupsController < ApplicationController
   def show
     id = params[:id]
     @group = Group.find(id)
+    @reports = @group.reports
   end
 
   def edit

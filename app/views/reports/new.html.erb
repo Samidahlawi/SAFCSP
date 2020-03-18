@@ -1,0 +1,16 @@
+<h1>New Report</h1>
+
+<%= form_with(model: @report, url: group_reports_path, method: "post") do |form| %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Create" %>
+  </div>
+
+
+<% end %>
+<%# link_to 'Back', group_path(@report.group_id) %>

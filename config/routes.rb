@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
-  resources :groups
+  
+
+  
+  resources :documents
+  
+  resources :groups do
+    resources :reports
+  end
+
   # devise_for :users
   devise_for :users, controllers: {
     sessions: 'users/sessions',

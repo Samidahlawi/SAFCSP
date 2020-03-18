@@ -1,2 +1,28 @@
 <h1>Groups#show</h1>
-<%= @group.name %>
+<br>
+<%= link_to 'Back', groups_path %>
+<br>
+<h3>Group: <strong><%= @group.name %></strong> </h3>
+
+<hr>
+<%= link_to 'Create New Report' , new_group_report_path(@group.id) %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @reports.each do |report| %>
+      <tr>
+        <td><%= report.name %></td>
+        <td><%= link_to 'Show', group_report_path(@group.id,report.id) %></td>
+        <td><%= link_to 'Edit', edit_group_report_path(@group.id,report.id) %></td>
+        <td><%= link_to 'Destroy', group_report_path(@group.id,report.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

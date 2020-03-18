@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @report.name %>
+</p>
+
+<%= link_to 'Edit', edit_group_report_path(@group_id,@report.id) %> |
+<%= link_to 'Back', group_path(@group_id) %>
