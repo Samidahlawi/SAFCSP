@@ -29,6 +29,7 @@ Report Management System is a website that contains a large set of reports and e
 ### Back-end
 - RUBY
 - RUBY ON RAILS
+- Devise
 - POSTGRES
 
 
